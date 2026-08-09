@@ -12,6 +12,20 @@ You can create, rename, duplicate, and delete service groups, and toggle their a
 
 You can also activate or enable a single service as well as view their logs.
 
+## Installation
+You can use this tool by compiling it from source. You can also download a pre-built binary from the [releases page](https://github.com/arnaudelrio/sydtui/releases).
+
+It is also published at [crates.io](https://crates.io/crates/sydtui), and you can install it via:
+```bash
+cargo install sydtui
+```
+
+Finally, you can also install it from the [AUR](https://aur.archlinux.org/packages/sydtui) if you are using Arch Linux by running:
+
+```bash
+paru -S sydtui
+```
+
 ### Configuration
 Configuration is done via `config.toml`.
 

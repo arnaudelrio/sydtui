@@ -34,27 +34,6 @@ pub fn main() -> io::Result<()> {
 }
 
 /// The command-line interface for the sydtui application.
-/// 
-/// Usage:
-/// ```
-/// Usage: sydtui [OPTIONS]
-///
-/// Options:
-///   -a, --activate <SERVICE_GROUP>
-///          Toggle the activation of a group of services
-///
-///   -e, --enable <SERVICE_GROUP>
-///          Toggle the enablement of a group of services
-///
-///   -l, --list
-///          List all available service groups
-///
-///   -h, --help
-///          Print help (see a summary with '-h')
-///
-///   -V, --version
-///          Print version
-/// ```
 #[derive(Parser)]
 #[command(author, version, about)]
 pub struct Cli {
