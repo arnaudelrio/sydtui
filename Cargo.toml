@@ -5,6 +5,7 @@ edition = "2024"
 authors = ["arnaudelrio", "<arnau.delrio@gmail.com>"]
 description = "A TUI for managing groups of systemd services"
 readme = "README.md"
+license-file = "LICENSE"
 repository = "https://github.com/arnaudelrio/sydtui"
 keywords = ["systemd", "tui", "cli"]
 
