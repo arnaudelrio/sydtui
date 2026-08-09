@@ -45,6 +45,7 @@ pub fn ui(frame: &mut Frame, app: &mut App) {
     }
 }
 
+/// Renders the main screen of the application.
 fn render_main_menu(frame: &mut Frame, app: &mut App) {
     let title = Line::from(" sydtui: systemd services manager ".bold());
     let keybindings = Line::from(vec![
@@ -109,6 +110,7 @@ fn render_main_menu(frame: &mut Frame, app: &mut App) {
     }
 }
 
+/// Renders the key bindings popup.
 fn render_key_bindings(frame: &mut Frame, app: &App) {
     let title = Line::from(" Key bindings ".bold());
     let block = Block::bordered().title(title).border_set(border::THICK);
@@ -123,6 +125,7 @@ fn render_key_bindings(frame: &mut Frame, app: &App) {
     frame.render_widget(Paragraph::new(text).block(block), area);
 }
 
+/// Renders the creating new group popup.
 fn render_creating_new(frame: &mut Frame, app: &mut App, text: String) {
     render_main_menu(frame, app);
 
@@ -140,6 +143,7 @@ fn render_creating_new(frame: &mut Frame, app: &mut App, text: String) {
     frame.render_widget(Paragraph::new(text).block(block), area);
 }
 
+/// Renders the rename group popup.
 fn render_rename_group(frame: &mut Frame, app: &mut App, text: String) {
     render_main_menu(frame, app);
 
@@ -156,6 +160,7 @@ fn render_rename_group(frame: &mut Frame, app: &mut App, text: String) {
     frame.render_widget(Paragraph::new(text).block(block), area);
 }
 
+/// Renders the group view.
 fn render_group_view(frame: &mut Frame, app: &App, service_group: &ServiceGroup) {
     let title = Line::from(" sydtui: systemd services manager ".bold());
     let keybindings = Line::from(vec![
@@ -226,6 +231,7 @@ fn render_group_view(frame: &mut Frame, app: &App, service_group: &ServiceGroup)
     }
 }
 
+/// Renders the service selection popup.
 fn render_service_selection(
     frame: &mut Frame,
     app: &App,
@@ -277,6 +283,7 @@ fn render_service_selection(
     Ok(())
 }
 
+/// Renders the service logs popup.
 fn render_service_logs(
     frame: &mut Frame,
     app: &App,

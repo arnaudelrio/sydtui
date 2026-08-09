@@ -13,26 +13,37 @@ use crate::{App, key_bindings::Keybindings, service::Service, service_groups::Se
 #[derive(Default, Deserialize, Serialize, Clone)]
 #[serde(default)]
 pub struct Config {
+    /// The keybindings for the application.
     pub keybindings: Keybindings,
+    /// The groups of services in the configuration.
     pub groups: Vec<ConfigGroup>,
 }
 
 /// A group of services in the configuration.
 #[derive(Default, Deserialize, Serialize, Clone)]
 pub struct ConfigGroup {
+    /// The name of the group.
     name: String,
+    /// Whether the group is active.
     is_active: bool,
+    /// Whether the group is enabled.
     is_enabled: bool,
+    /// The services in the group.
     services: Vec<ConfigService>,
 }
 
 /// A service in the configuration.
 #[derive(Default, Deserialize, Serialize, Clone)]
 pub struct ConfigService {
+    /// The name of the service.
     name: String,
+    /// The description of the service.
     description: String,
+    /// The path to the service.
     path: PathBuf,
+    /// Whether the service is active.
     is_active: bool,
+    /// Whether the service is enabled.
     is_enabled: bool,
 }
 

@@ -7,33 +7,44 @@ use std::sync::{Arc, Mutex};
 use ratatui::style::{Color, Style};
 use ratatui::text::Span;
 use ratatui::{
-    buffer::Buffer,
-    layout::Rect,
     symbols::border,
     text::{Line, Text},
-    widgets::{Block, Paragraph, Widget},
+    widgets::{Block, Paragraph},
 };
 use serde::{Deserialize, Serialize};
 
+/// Represents a service on the system.
 #[derive(Debug, Default, Deserialize, Serialize, Clone)]
 pub struct Service {
+    /// The name of the service.
     pub name: String,
+    /// The description of the service.
     pub description: String,
+    /// The path to the service file.
     pub path: PathBuf,
+    /// Whether the service is active.
     pub is_active: bool,
+    /// Whether the service is enabled.
     pub is_enabled: bool,
+    /// The process ID of the service.
     pub pid: i32,
+    /// The logs of the service.
     pub logs: String,
 }
 
+/// Represents a summary of a unit on the system.
 #[derive(Debug, Default, Deserialize, Serialize, Clone)]
 struct UnitSummary {
+    /// The name of the unit.
     unit: String,
+    /// The description of the unit.
     description: String,
+    /// Whether the unit is active.
     active: String,
 }
 
 impl Service {
+    /// Returns all services on the system.
     pub fn get_all() -> Vec<Arc<Mutex<Self>>> {
         let output = Command::new("systemctl")
             .args(["list-units", "--type=service", "--all", "--output=json"])
@@ -135,14 +146,12 @@ impl Service {
         }
     }
 
+    /// Gets the logs of the service.
     pub fn get_logs(&mut self) {
         self.logs = Service::fetch_logs(&self.name, 100);
     }
 
-    pub fn refresh(&mut self) {
-        
-    }
-
+    /// Gets a service by its name.
     pub fn get_service_by_name(
         app_services: &Vec<Arc<Mutex<Service>>>,
         service_name: String,
@@ -156,6 +165,7 @@ impl Service {
             .find(|s| s.lock().unwrap().name == service)
     }
 
+    /// Draws the list item for the service.
     pub fn draw_list(&self, is_selected: bool) -> Paragraph<'_> {
         let active = if self.is_active { "active" } else { "inactive" };
         let enabled = if self.is_enabled { "enabled" } else { "disabled" };
@@ -179,6 +189,7 @@ impl Service {
             .block(block)
     }
 
+    /// Searches for services by name.
     pub fn search_services(
         service_list: &Vec<Arc<Mutex<Service>>>,
         name: String,
@@ -203,6 +214,7 @@ impl Service {
         }
     }
 
+    /// Starts the service.
     pub fn start_service(&mut self) -> io::Result<()> {
         self.is_active = true;
         Command::new("systemctl")
@@ -212,6 +224,7 @@ impl Service {
         Ok(())
     }
 
+    /// Stops the service.
     pub fn stop_service(&mut self) -> io::Result<()> {
         self.is_active = false;
         Command::new("systemctl")
@@ -221,6 +234,7 @@ impl Service {
         Ok(())
     }
 
+    /// Enables the service.
     pub fn enable_service(&mut self) -> io::Result<()> {
         self.is_enabled = true;
         Command::new("systemctl")
@@ -230,6 +244,7 @@ impl Service {
         Ok(())
     }
 
+    /// Disables the service.
     pub fn disable_service(&mut self) -> io::Result<()> {
         self.is_enabled = false;
         Command::new("systemctl")
@@ -237,17 +252,5 @@ impl Service {
             .arg(self.name.clone())
             .output()?;
         Ok(())
-    }
-}
-
-impl Widget for &Service {
-    fn render(self, area: Rect, buf: &mut Buffer) {
-        let service_name = Line::from(format!("Service: {}", self.name));
-        let service_block = Block::bordered();
-
-        Paragraph::new(service_name)
-            .centered()
-            .block(service_block)
-            .render(area, buf);
     }
 }

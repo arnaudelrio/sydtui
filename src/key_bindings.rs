@@ -6,19 +6,33 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer, de};
 /// Represents the key bindings for the application.
 #[derive(Debug, Clone)]
 pub struct Keybindings {
+    /// Key codes for exiting the application.
     pub exit: Vec<KeyCode>,
+    /// Key codes for displaying the help message.
     pub help: Vec<KeyCode>,
+    /// Key codes for submitting a form.
     pub enter: Vec<KeyCode>,
+    /// Key codes for saving the application state.
     pub save: Vec<KeyCode>,
+    /// Key codes for reloading the application state.
     pub reload: Vec<KeyCode>,
+    /// Key codes for moving to the previous selected item.
     pub previous: Vec<KeyCode>,
+    /// Key codes for moving to the next selected item.
     pub next: Vec<KeyCode>,
+    /// Key codes for creating a new item.
     pub new: Vec<KeyCode>,
+    /// Key codes for renaming an item.
     pub rename: Vec<KeyCode>,
+    /// Key codes for duplicating an item.
     pub duplicate: Vec<KeyCode>,
+    /// Key codes for deleting an item.
     pub delete: Vec<KeyCode>,
+    /// Key codes for toggling the activation state of an item.
     pub toggle_activate: Vec<KeyCode>,
+    /// Key codes for toggling the enabled state of an item.
     pub toggle_enabled: Vec<KeyCode>,
+    /// Key codes for viewing the logs.
     pub view_logs: Vec<KeyCode>,
 }
 
