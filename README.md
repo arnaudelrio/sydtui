@@ -20,12 +20,6 @@ It is also published at [crates.io](https://crates.io/crates/sydtui), and you ca
 cargo install sydtui
 ```
 
-Finally, you can also install it from the [AUR](https://aur.archlinux.org/packages/sydtui) if you are using Arch Linux by running:
-
-```bash
-paru -S sydtui
-```
-
 ### Configuration
 Configuration is done via `config.toml`.
 
