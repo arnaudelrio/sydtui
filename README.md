@@ -67,3 +67,10 @@ toggle_activate = [" "]
 toggle_enabled = ["e"]
 view_logs = ["l"]
 ```
+
+### Preview
+![Main menu](./images/sydtui_main_menu.png)
+
+![Group view](./images/sydtui_group_view.png)
+
+![Help screen](./images/sydtui_help_screen.png)
